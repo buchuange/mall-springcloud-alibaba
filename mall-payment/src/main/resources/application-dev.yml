@@ -1,0 +1,33 @@
+server:
+  port: 8400
+
+spring:
+  application:
+    name: server-payment
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 100322
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.206.130:8848
+  rabbitmq:
+    addresses: 192.168.206.130
+    port: 5672
+  redis:
+    host: 192.168.206.130
+    port: 6380
+
+wechat:
+  appId: wx3e6b9f1c5a7ff034
+  mchId: 1614433647
+  mchKey: Aa111111111122222222223333333333
+  notifyUrl: http://mu4d74.natappfree.cc/pay/notify
+  returnUrl: http://mall.com
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+

@@ -1,0 +1,21 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: server-user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 100322
+  redis:
+    host: 192.168.206.130
+    port: 6380
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.206.130:8848
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml

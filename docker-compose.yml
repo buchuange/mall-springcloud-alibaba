@@ -1,0 +1,54 @@
+version: "3"
+services:
+  mall-gateway:
+    image: 192.168.206.130:5000/mall-gateway:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 9572:9572
+    networks:
+      - microservice-net
+
+  product-service:
+    image: 192.168.206.130:5000/mall-product:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8100:8100
+    networks:
+      - microservice-net
+
+  order-service:
+    image: 192.168.206.130:5000/mall-order:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8300:8300
+    networks:
+      - microservice-net
+
+  user-service:
+    image: 192.168.206.130:5000/mall-user:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8000:8000
+    networks:
+      - microservice-net
+
+  cart-service:
+    image: 192.168.206.130:5000/mall-cart:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8200:8200
+    networks:
+      - microservice-net
+
+  payment-service:
+    image: 192.168.206.130:5000/mall-payment:1.0-SNAPSHOT
+    restart: on-failure
+    ports:
+      - 8400:8400
+    networks:
+      - microservice-net
+
+networks:
+  microservice-net:
+volumes:
+  microservice-mysql:

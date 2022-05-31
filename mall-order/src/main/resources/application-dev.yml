@@ -1,0 +1,37 @@
+server:
+  port: 8300
+
+spring:
+  application:
+    name: server-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mall?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 100322
+  redis:
+    host: 192.168.206.130
+    port: 6380
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.206.130:8848
+    sentinel:
+      transport:
+        # 配置 sentinel dashboard地址
+        dashboard: 192.168.206.130:8858
+        # 指定和控制通信的端口，默认值8719，如不设置，会自动从8719开始扫描，依次+1，直到找到未被占用的端口
+        port: 8719
+    circuitbreaker:
+      sentinel:
+        enabled: true
+  rabbitmq:
+    addresses: 192.168.206.130
+    port: 5672
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+feign:
+  sentinel:
+    enabled: true

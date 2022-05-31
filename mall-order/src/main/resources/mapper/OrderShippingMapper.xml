@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dawn.mall.mapper.OrderShippingMapper">
+
+    <resultMap id="BaseResultMap" type="com.dawn.mall.domain.OrderShipping">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+        <result column="shipping_id" jdbcType="INTEGER" property="shippingId" />
+        <result column="receiver_name" jdbcType="VARCHAR" property="receiverName" />
+        <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
+        <result column="receiver_mobile" jdbcType="VARCHAR" property="receiverMobile" />
+        <result column="receiver_province" jdbcType="VARCHAR" property="receiverProvince" />
+        <result column="receiver_city" jdbcType="VARCHAR" property="receiverCity" />
+        <result column="receiver_district" jdbcType="VARCHAR" property="receiverDistrict" />
+        <result column="receiver_address" jdbcType="VARCHAR" property="receiverAddress" />
+        <result column="receiver_zip" jdbcType="VARCHAR" property="receiverZip" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, order_no, shipping_id, receiver_name, receiver_phone, receiver_mobile,
+    receiver_province, receiver_city, receiver_district, receiver_address, receiver_zip,
+    create_time, update_time
+   </sql>
+
+    <insert id="insertSelective" parameterType="com.dawn.mall.domain.OrderShipping">
+        insert into mall_order_shipping
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="shippingId != null">
+                shipping_id,
+            </if>
+            <if test="receiverName != null">
+                receiver_name,
+            </if>
+            <if test="receiverPhone != null">
+                receiver_phone,
+            </if>
+            <if test="receiverMobile != null">
+                receiver_mobile,
+            </if>
+            <if test="receiverProvince != null">
+                receiver_province,
+            </if>
+            <if test="receiverCity != null">
+                receiver_city,
+            </if>
+            <if test="receiverDistrict != null">
+                receiver_district,
+            </if>
+            <if test="receiverAddress != null">
+                receiver_address,
+            </if>
+            <if test="receiverZip != null">
+                receiver_zip,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="shippingId != null">
+                #{shippingId,jdbcType=INTEGER},
+            </if>
+            <if test="receiverName != null">
+                #{receiverName,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverPhone != null">
+                #{receiverPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverMobile != null">
+                #{receiverMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverProvince != null">
+                #{receiverProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverCity != null">
+                #{receiverCity,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverDistrict != null">
+                #{receiverDistrict,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverAddress != null">
+                #{receiverAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="receiverZip != null">
+                #{receiverZip,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="listAllByOrderNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from mall_order_shipping
+        <where>
+            <if test="orderNoSet.size() > 0">
+              order_no in
+              <foreach collection="orderNoSet" item="item" open="(" close=")" separator=",">
+                  #{item}
+              </foreach>
+            </if>
+        </where>
+    </select>
+
+</mapper>
